@@ -43,3 +43,18 @@
 # gitignore ekledik
 # src/config dbConnection.ts actik
 # dbConnection func server da cagirdik.
+### Model yapisi
+# User Model
+  - hasleme icin bcyrpt kullacilak
+  - modelde user typelini ifade etmek icin src iicnde types onun icinde user.types.ts dosyasi actim. icinde inetrfac tanimladim
+  **** Not: Burda import ederken dosya uzantisi .js oluyor cunku ts derlenince dist icinde onlari runtime de .js olarak ayrica cikariyor.
+  *** Not: Burda bcyrpt durumuna karar verirken su soruya takildim
+      Hashleme: schema'da set ile mi, controller'da mı?
+      Schema'da set transformer veya pre("save") hook:
+      Avantajı: "hashlemeyi unuttum" riski sıfırlanır, her save'de otomatik tetiklenir.
+Kritik tuzak: Bu yaklaşım yalnızca document.save() çağrıldığında güvenilir çalışır (yani önce findById ile dokümanı çekip, alanı değiştirip, save() dersen). Eğer profil güncellemede findByIdAndUpdate(id, {password: "..."}) gibi tek adımlı bir query kullanırsan, Mongoose'un pre("save") hook'u çalışmaz — çünkü orada bir doküman instance'ı oluşturup save etmiyorsun, direkt DB'ye query atıyorsun. set transformer'ı da query-based update'lerde varsayılan olarak tetiklenmez (özel bir ayar açman gerekir).
+Ayrıca naif bir set kullanırsan, kullanıcı şifresini değiştirmeden sadece bio güncellese bile (eğer kodun her save'de password alanını yeniden set ediyorsa) hash'i tekrar hash'leme riski oluşur — bunu önlemek için isModified("password") kontrolü eklemen gerekir.
+      Controller'da manuel:
+Tam olarak ne zaman, hangi koşulda hashleneceğini sen görürsün ve kontrol edersin: "body'de password geldi mi? Geldiyse hashle. Gelmediyse dokunma."
+findByIdAndUpdate gibi tek adımlı update pattern'leriyle de sorunsuz uyumlu çalışır, çünkü hash işlemini zaten query'den önce, elindeki body objesi üzerinde yapıyorsun.
+# Category Model

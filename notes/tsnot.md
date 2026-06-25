@@ -15,3 +15,11 @@
         ) => {
             res.send("Hello");
         };
+
+
+
+# Type Interface
+- new mongoose.Schema<IUser>() ile Bu schema IUser yapısındaki veri tutacak demis oluyoruz
+- TypeScript interface
+    → field adı ve field tipi kontrol eder
+    → email mi mail mi, string mi number mı
