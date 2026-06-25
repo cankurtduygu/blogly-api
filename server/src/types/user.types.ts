@@ -9,4 +9,5 @@ export interface IUser {
   bio?: string;
   isActive: boolean;
   isAdmin: boolean;
+  isStaff: boolean;
 }

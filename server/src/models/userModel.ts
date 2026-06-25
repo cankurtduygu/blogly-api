@@ -72,6 +72,11 @@ const userSchema = new mongoose.Schema<IUser>(
       type: Boolean,
       default: false,
     },
+
+    isStaff: {
+      type: Boolean,
+      default: false,
+    }
   },
   { collection: "users", timestamps: true },
 );

@@ -1,4 +1,4 @@
-# Type inference
+### Type inference
  app.get("/", (req, res) => {
         res.send("Hello");
   });
@@ -18,8 +18,14 @@
 
 
 
-# Type Interface
+### Type Interface
+# User
 - new mongoose.Schema<IUser>() ile Bu schema IUser yapısındaki veri tutacak demis oluyoruz
 - TypeScript interface
     → field adı ve field tipi kontrol eder
     → email mi mail mi, string mi number mı
+# Category
+# Blog
+- Burda karsimiza iliskisel type tanimlama cikti
+  * userId: Types.ObjectId; Neden string değil? Mesela MongoDB'de User'ın id'si:685c32f487ab4d51f3ab1234 olarak durur. Ama Mongoose bunu Types.ObkjectId olarak temsil eder.
+- comments neden array. Bir blogada birden cok yorum olabilir bu yüzden comments: Types.ObjectId[];.

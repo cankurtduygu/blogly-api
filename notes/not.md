@@ -58,3 +58,9 @@ Ayrıca naif bir set kullanırsan, kullanıcı şifresini değiştirmeden sadece
 Tam olarak ne zaman, hangi koşulda hashleneceğini sen görürsün ve kontrol edersin: "body'de password geldi mi? Geldiyse hashle. Gelmediyse dokunma."
 findByIdAndUpdate gibi tek adımlı update pattern'leriyle de sorunsuz uyumlu çalışır, çünkü hash işlemini zaten query'den önce, elindeki body objesi üzerinde yapıyorsun.
 # Category Model
+ - comments: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Comment",
+      },
+    ], seklinde berlitmemiz gerekir comnet bir arry ve bu comnet tablöosundan gelecek
