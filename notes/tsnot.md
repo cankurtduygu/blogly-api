@@ -36,3 +36,5 @@
 # bcrypt func daki ts tipleri
  - async (password: string): Promise<string> burda password string diye belirttik ve func async olup da promise dönecegini Promise<string> ile belirtiriz.
  - (): Promise<string> Bu fonksiyon Promise döndürüyor ve Promise'in içindeki değer string.
+# errorHndler
+ - import type { ErrorRequestHandler } from "express"; bunu import ediyouz ki ts ye bilgi veriyoruz böylece ts bu function Express in error middlewarei olacak diyoruz ve ts buna göre err, req, res, next parametrelerinin tiplerini otomatik cikariyor.
