@@ -64,3 +64,9 @@ findByIdAndUpdate gibi tek adımlı update pattern'leriyle de sorunsuz uyumlu ç
         ref: "Comment",
       },
     ], seklinde berlitmemiz gerekir comnet bir arry ve bu comnet tablöosundan gelecek
+# Auth/Token Model
+ - hashleme icin bcyrpt kullanacagim icin;
+      npm i bcrypt ve ts icin de 
+      npm i -D @types/bcrypt paket yüklemesi yapildi.
+ - Modeli yazarken simple Token dusundugumuz icin kullanci logout almayi unutursa token expire olsun diye TTL index kullandik (Time To Live )
+    
