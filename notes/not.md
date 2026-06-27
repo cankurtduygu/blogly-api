@@ -69,4 +69,6 @@ findByIdAndUpdate gibi tek adımlı update pattern'leriyle de sorunsuz uyumlu ç
       npm i bcrypt ve ts icin de 
       npm i -D @types/bcrypt paket yüklemesi yapildi.
  - Modeli yazarken simple Token dusundugumuz icin kullanci logout almayi unutursa token expire olsun diye TTL index kullandik (Time To Live )
-    
+# bcyprt/auth islemleri
+ - 
+ 

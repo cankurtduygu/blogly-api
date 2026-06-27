@@ -15,9 +15,6 @@
         ) => {
             res.send("Hello");
         };
-
-
-
 ### Type Interface
 # User
 - new mongoose.Schema<IUser>() ile Bu schema IUser yapısındaki veri tutacak demis oluyoruz
@@ -36,3 +33,6 @@
 );
     bu sekilde tanimladik. 
   ** Burda kullandigimiz expire süresini env de tanimladik ama ordan gelen veri string geldigi icin Numbera cevirdik.
+# bcrypt func daki ts tipleri
+ - async (password: string): Promise<string> burda password string diye belirttik ve func async olup da promise dönecegini Promise<string> ile belirtiriz.
+ - (): Promise<string> Bu fonksiyon Promise döndürüyor ve Promise'in içindeki değer string.
