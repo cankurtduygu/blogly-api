@@ -7,9 +7,6 @@ export const registerSchema = z.object({
     email: z.string().trim().email().toLowerCase(),
     firstName: z.string().trim().min(2).max(50),
     lastName: z.string().trim().min(2).max(50),
-    image: z.string().trim().optional(),
-    city: z.string().trim().optional(),
-    bio: z.string().trim().max(500).optional(),
   }),
 });
 

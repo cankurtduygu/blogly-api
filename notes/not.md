@@ -74,4 +74,13 @@ findByIdAndUpdate gibi tek adımlı update pattern'leriyle de sorunsuz uyumlu ç
 # ErrorHandler ve customError yazdik
 # Zod validation 
  - npm i zod indirdim
+ - src/validations folder olusturdum icindede auth.validation.ts olusturdum login ve register shemayi yazdim
+ - middleware icinde validate.ts dosyasi actim.
+### Controller durumlari
+# Auth Controller
+ - passwrod icin select: false sunu engeller await User.findOne(...) ama sunu engellemez await User.create(...)
  
+
+### Router durumlari
+# Auth Route
+ - routeri burda yazdiktan sonra app.ts de eklyioruz app.use icinde
