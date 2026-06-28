@@ -79,6 +79,9 @@ findByIdAndUpdate gibi tek adımlı update pattern'leriyle de sorunsuz uyumlu ç
 ### Controller durumlari
 # Auth Controller
  - passwrod icin select: false sunu engeller await User.findOne(...) ama sunu engellemez await User.create(...)
+# User Controller
+ - createUser olusturdum. token burda üretildi inceleyecegin zaman bak
+   * create ile olusturaln obje de geriye dönen sey elimizdeki sey oldugu icin passwordu kaldirmamiz gerekiyordu. bunun icin userModel'e bi yapi koyduk password-tojson-transfomn notunda var
  
 
 ### Router durumlari

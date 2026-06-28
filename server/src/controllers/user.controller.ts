@@ -3,7 +3,7 @@
 import { User } from "../models/userModel.js";
 import { Token } from "../models/tokenModel.js";
 import { CustomError } from "../utils/customError.js";
-import { hashPassword, comparePassword } from "../utils/bcrypt.js";
+import { hashPassword } from "../utils/bcrypt.js";
 import { generateToken } from "../utils/token.js";
 import type { Request, Response } from "express";
 

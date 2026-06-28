@@ -4,9 +4,22 @@
 # @name home
 GET {{baseUrl}}
 
-###
 
-# @name register
+
+### 
+# @name login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "username": "testuser3",
+  "password": "123456"
+}
+
+
+
+###
+# @name createUser/register
 post {{baseUrl}}/users
 Content-Type: application/json
 

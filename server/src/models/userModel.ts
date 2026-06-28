@@ -81,4 +81,14 @@ const userSchema = new mongoose.Schema<IUser>(
   { collection: "users", timestamps: true },
 );
 
+userSchema.set("toJSON", {
+  transform: (_doc, ret) => {
+    const { password, ...rest } = ret;
+    return rest;
+  },
+
+});
+
+
+
 export const User = mongoose.model<IUser>("User", userSchema);
