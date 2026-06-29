@@ -14,7 +14,7 @@ export const createUser = async (req: Request, res: Response) => {
     $or: [{ username }, { email }],
   });
 
-  if (existingUser) {
+  if (!existingUser) {
     throw new CustomError("Username or email already exists", 409);
   }
 

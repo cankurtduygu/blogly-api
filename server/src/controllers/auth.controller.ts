@@ -14,7 +14,7 @@ export const login = async (req: Request, res: Response) => {
     $or: [{ username }, { email: username }],
   }).select("+password");
 
-  if (!user) throw new CustomError("Invalid username/email or password", 404);
+  if (!user) throw new CustomError("Invalid username/email or password", 401);
 
   const isPasswordValid = await comparePassword(password, user.password);
 
@@ -22,18 +22,16 @@ export const login = async (req: Request, res: Response) => {
     throw new CustomError("Invalid username/email or password", 401);
   }
 
+  if(!user.isActive) throw new CustomError("Your account is inactive.", 403)
+
   const token = generateToken();
 
-  await Token.findOneAndUpdate(
-    { userId: user._id },
-    { token },
-    { upsert: true, new: true },
-  );
+  await Token.create({ userId: user._id, token });
 
   return res.status(200).json({
     error: false,
     message: "Login successful.",
     token,
-    user
-    });
+    user,
+  });
 };

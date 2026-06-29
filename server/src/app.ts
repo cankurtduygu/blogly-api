@@ -4,6 +4,8 @@ import express from "express";
 import authRoutes from "./routes/auth.routes.js";
 import userRoutes from "./routes/user.routes.js";
 import { errorHandler } from "./middlewares/errorHandler.js";
+import { authentication } from "./middlewares/authentication.js";
+
 
 const app = express();
 
@@ -15,6 +17,7 @@ app.get("/", (req, res) => {
     message: "WELCOME TO BLOG API",
   });
 });
+app.use(authentication)
 
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
