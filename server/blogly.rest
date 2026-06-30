@@ -16,6 +16,12 @@ Content-Type: application/json
 }
 
 ###
+# @name listUser
+get {{baseUrl}}/users
+Authorization: {{simpleToken}}
+
+
+###
 # @name createUser/
 post {{baseUrl}}/users
 Content-Type: application/json
@@ -27,6 +33,27 @@ Content-Type: application/json
   "email": "test@example.com",
   "password": "Test1234"
 }
+
+###
+# @name readUser
+GET {{baseUrl}}/users/6a43708671281dea0d7de841
+Authorization: {{simpleToken}}
+
+###
+
+# @name updateUser
+put {{baseUrl}}/users/6a44411785f1ce126978ee53
+Content-Type: application/json
+Authorization: {{simpleToken}}
+
+{
+    "username" : "testuserupda"
+}
+
+###
+# @name deleteUser
+DELETE {{baseUrl}}/users/6a44411785f1ce126978ee53
+Authorization: {{simpleToken}}
 
 ### 
 # @name logout

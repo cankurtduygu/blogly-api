@@ -1,10 +1,18 @@
 import type { IUser } from "./user.types.js";
+import type { Model, PopulateOptions } from "mongoose";
 
 declare global {
   namespace Express {
     interface Request {
       user?: (IUser & { _id: Types.ObjectId }) | null;
       tokenKey?: HydratedDocument<IToken> | null;
+    }
+    interface Response {
+      getModelList: (
+        Model: Model<any>,
+        populate?: PopulateOptions | null,
+      ) => Promise<any[]>;
+      getModelListDetails: (Model: Model<any>) => Promise<object>;
     }
   }
 }

@@ -9,7 +9,6 @@ import { Types } from "mongoose";
 // console.log("AUTH FILE LOADED");
 
 export const authentication = async (req: Request, res: Response, next: NextFunction )=>{
-
     // console.log(req.method, req.originalUrl);
     // console.log("AUTH MIDDLEWARE HIT2");
 

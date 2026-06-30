@@ -50,17 +50,22 @@ const userSchema = new mongoose.Schema<IUser>(
       maxlength: 50,
     },
 
-    image: String,
+    image: {
+      type: String,
+      default: null,
+    },
 
     city: {
       type: String,
       trim: true,
+      default: null,
     },
 
     bio: {
       type: String,
       maxlength: 2000,
       trim: true,
+      default: null,
     },
 
     isActive: {
@@ -76,7 +81,7 @@ const userSchema = new mongoose.Schema<IUser>(
     isStaff: {
       type: Boolean,
       default: false,
-    }
+    },
   },
   { collection: "users", timestamps: true },
 );
@@ -86,9 +91,6 @@ userSchema.set("toJSON", {
     const { password, ...rest } = ret;
     return rest;
   },
-
 });
-
-
 
 export const User = mongoose.model<IUser>("User", userSchema);

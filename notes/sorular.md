@@ -1,0 +1,1 @@
+1) res de password hashlenmis olsa bile döndürmek gerekir mi ben döndürmemeyi tercih etmistim.

@@ -5,6 +5,7 @@ import authRoutes from "./routes/auth.routes.js";
 import userRoutes from "./routes/user.routes.js";
 import { errorHandler } from "./middlewares/errorHandler.js";
 import { authentication } from "./middlewares/authentication.js";
+import { queryHandler } from "./middlewares/queryHandler.js";
 
 
 const app = express();
@@ -17,6 +18,11 @@ app.get("/", (req, res) => {
     message: "WELCOME TO BLOG API",
   });
 });
+
+// Query Handler
+app.use(queryHandler);
+
+// Authentication
 app.use(authentication)
 
 app.use("/auth", authRoutes);

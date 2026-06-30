@@ -89,9 +89,33 @@ findByIdAndUpdate gibi tek adımlı update pattern'leriyle de sorunsuz uyumlu ç
 # User Controller
  - createUser olusturdum. token burda üretildi inceleyecegin zaman bak
    * create ile olusturaln obje de geriye dönen sey elimizdeki sey oldugu icin passwordu kaldirmamiz gerekiyordu. bunun icin userModel'e bi yapi koyduk password-tojson-transfomn notunda var
+ - listUser da birsey ögrnedim
+   * NOT: Mongoose — Boş Alanların Response'a Dahil Edilmemesi Mongoose, şemada tanımlı olsa bile değeri hiç set edilmemiş (undefined) alanları JSON response'a dahil etmez.
+    Örnek:
+    // Şemada var ama değer verilmemiş
+        image: String,
+        city: String,
+        bio: String,
+        → Bu kullanıcı kaydedilirken image, city, bio verilmemişse response'da bu alanlar görünmez.
+
+        Çözüm: Opsiyonel alanlara default: null ekle:
+
+        image: { type: String, default: null },
+        city:  { type: String, trim: true, default: null },
+        bio:   { type: String, maxlength: 2000, trim: true, default: null },
+        → Artık değer verilmese bile "image": null olarak response'a dahil edilir.
+
+        Dikkat: default ekledikten sonra eski kayıtlar otomatik güncellenmez, sadece yeni kayıtlar için geçerlidir. Eski kayıtlar için PUT ile güncelleme yapılması gerekir.
+ - readUser yazarken sunu gördüm idValidation icin expressin kedni tanimladigi yapi varmis zaten yani id abc gibi sacma birsey girince tam bizim gibi hata dönüyorda expressin kendi hata mesaji dönyüor bunu error handler da düzelttik.
+  * runValidators Mongoose şema validasyonlarını update sırasında da çalıştır demek.
+Normalde Mongoose validasyonları sadece .create() ve .save() sırasında çalışır. findOneAndUpdate veya findByIdAndUpdate kullandığında şema kuralları default olarak çalışmaz.
 # Permission
  - isLogin yazarken orda isAuthenticated yadigim func da && Bu satırın döndürdüğü tip boolean değil — JavaScript'in && operatörü, soldaki değer "falsy" ise onu, değilse sağdaki değeri döndürür. Yani bu fonksiyon aslında şunlardan birini döndürebilir: null (user yoksa), undefined (user var ama isActive tanımsızsa), ya da true/false (isActive'in gerçek değeri). if (!isAuthenticated(req)) satırı pratikte doğru çalışır (çünkü !null, !undefined, !false hepsi true olur) ama tip olarak temiz değil — TS'in strict modunda bazen "bu fonksiyon boolean dönmüyor" diye bir uyarı/öneri çıkarabilir (hata vermeyebilir de, IDE'de sarı çizgi olarak görünebilir).
 Daha temiz olması için çift !! (boolean'a zorlama) ekleyebilirsin:
+ - isOwnerorAdmin yazdim
+      De Morgan yasası olarak da düşünebilirsin:
+      İzin vermek istediğin durum: isOwner || isAdmin
+      Reddetmek istediğin durum (bunun tersi): !isOwner && !isAdmin
  
 
 ### Router durumlari
