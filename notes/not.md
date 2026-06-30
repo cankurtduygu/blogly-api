@@ -76,15 +76,22 @@ findByIdAndUpdate gibi tek adımlı update pattern'leriyle de sorunsuz uyumlu ç
  - npm i zod indirdim
  - src/validations folder olusturdum icindede auth.validation.ts olusturdum login ve register shemayi yazdim
  - middleware icinde validate.ts dosyasi actim.
-### Controller durumlari
+
+
+
+# Controller durumlari
 # Auth Controller
  - passwrod icin select: false sunu engeller await User.findOne(...) ama sunu engellemez await User.create(...)
  - login logout refresh durumalrini burda yapacagiz
  - login yapildi
  - loginden sonra autehntication middleware yazdim. orda Hydrated-document diye bir ts yapisi ögrendim onun notu ayri md dosyasinda.(C:\Users\dygca\Desktop\blogly-api\notes\hydrated-document-notlari-ts.md)
+ - logout'u yazarken nu swagger dökümaninda get ile cagirdigimizi gördüm anlam veremedim cunku post yapmak daha mantikli get ile geirecegi birsey yokki postta gerci gönderecegi bir api yok aslinda. Burda RPC tarzi diye birsey cikti karsima bu RPC ile REST iki farkli API tasarim yaklasimiymis. Uzakta bir funci cagiriyormus gibi API kullanmak. Remote Procedure Call
 # User Controller
  - createUser olusturdum. token burda üretildi inceleyecegin zaman bak
    * create ile olusturaln obje de geriye dönen sey elimizdeki sey oldugu icin passwordu kaldirmamiz gerekiyordu. bunun icin userModel'e bi yapi koyduk password-tojson-transfomn notunda var
+# Permission
+ - isLogin yazarken orda isAuthenticated yadigim func da && Bu satırın döndürdüğü tip boolean değil — JavaScript'in && operatörü, soldaki değer "falsy" ise onu, değilse sağdaki değeri döndürür. Yani bu fonksiyon aslında şunlardan birini döndürebilir: null (user yoksa), undefined (user var ama isActive tanımsızsa), ya da true/false (isActive'in gerçek değeri). if (!isAuthenticated(req)) satırı pratikte doğru çalışır (çünkü !null, !undefined, !false hepsi true olur) ama tip olarak temiz değil — TS'in strict modunda bazen "bu fonksiyon boolean dönmüyor" diye bir uyarı/öneri çıkarabilir (hata vermeyebilir de, IDE'de sarı çizgi olarak görünebilir).
+Daha temiz olması için çift !! (boolean'a zorlama) ekleyebilirsin:
  
 
 ### Router durumlari

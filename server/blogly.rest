@@ -1,9 +1,8 @@
 @baseUrl = http://127.0.0.1:8000
-
+@simpleToken = Token {{login.response.body.token}}
 
 # @name home
 GET {{baseUrl}}
-
 
 
 ### 
@@ -12,21 +11,24 @@ POST {{baseUrl}}/auth/login
 Content-Type: application/json
 
 {
-  "username": "testuser3",
-  "password": "123456"
+  "username": "test@example.com",
+  "password": "Test1234"
 }
 
-
-
 ###
-# @name createUser/register
+# @name createUser/
 post {{baseUrl}}/users
 Content-Type: application/json
 
 {
-  "username": "testuser3",
-  "firstName": "Test3",
-  "lastName": "User3",
-  "email": "test3@example.com",
-  "password": "123456"
+  "username": "testuser",
+  "firstName": "Test",
+  "lastName": "User",
+  "email": "test@example.com",
+  "password": "Test1234"
 }
+
+### 
+# @name logout
+get {{baseUrl}}/auth/logout
+Authorization: {{simpleToken}}

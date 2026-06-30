@@ -22,11 +22,15 @@ export const login = async (req: Request, res: Response) => {
     throw new CustomError("Invalid username/email or password", 401);
   }
 
-  if(!user.isActive) throw new CustomError("Your account is inactive.", 403)
+  if (!user.isActive) throw new CustomError("Your account is inactive.", 403);
 
   const token = generateToken();
 
-  await Token.create({ userId: user._id, token });
+  await Token.findOneAndUpdate(
+    { userId: user._id },
+    { $set: { token } },
+    { upsert: true }
+  );
 
   return res.status(200).json({
     error: false,
@@ -34,4 +38,15 @@ export const login = async (req: Request, res: Response) => {
     token,
     user,
   });
+};
+
+export const logout = async (req: Request, res: Response) => {
+  console.log("hits logout controller")
+  if (!req.tokenKey) throw new CustomError("Token not found.", 401);
+  await req.tokenKey?.deleteOne();
+
+  res.status(200).json({
+     error: false, 
+     message: "Logged out successfully." 
+    });
 };
