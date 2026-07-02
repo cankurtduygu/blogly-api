@@ -121,3 +121,20 @@ Daha temiz olması için çift !! (boolean'a zorlama) ekleyebilirsin:
 ### Router durumlari
 # Auth Route
  - routeri burda yazdiktan sonra app.ts de eklyioruz app.use icinde
+
+# Blog Route
+ ********* 
+ - router.route('/:id') bir path tanımlıyor — o path için HTTP metodlarını zinciriyor. .get(), .post(), .put(), .delete() metodları burada path değil, handler alıyor.
+
+ router.route('/:id')
+  .get(handler)      // ← sadece handler
+  .post(handler)     // ← sadece handler, path yok
+  .post("/postLike", handler)  // ← bu çalışmaz, post() path almıyor
+
+ Ne zaman string geçebilirsin?
+router.route() çağrısında geçersin
+router.route('/:id/postLike')   // ← buraya path
+  .post(isLogin, toggleLikeBlog)  // ← buraya handler
+Ya da direkt router.post() ile:
+router.post('/:id/postLike', isLogin, toggleLikeBlog)
+// ↑ buraya path     ↑ buraya handler

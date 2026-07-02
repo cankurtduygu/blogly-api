@@ -10,7 +10,7 @@ declare global {
     interface Response {
       getModelList: (
         Model: Model<any>,
-        populate?: PopulateOptions | null,
+        populate?: PopulateOptions | PopulateOptions[] |null,
       ) => Promise<any[]>;
       getModelListDetails: (Model: Model<any>) => Promise<object>;
     }

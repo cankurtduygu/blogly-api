@@ -4,16 +4,20 @@
 # @name home
 GET {{baseUrl}}
 
-
 ### 
 # @name login
 POST {{baseUrl}}/auth/login
 Content-Type: application/json
 
 {
-  "username": "test@example.com",
+  "username": "testt@example.com",
   "password": "Test1234"
 }
+
+### 
+# @name logout
+get {{baseUrl}}/auth/logout
+Authorization: {{simpleToken}}
 
 ###
 # @name listUser
@@ -27,10 +31,10 @@ post {{baseUrl}}/users
 Content-Type: application/json
 
 {
-  "username": "testuser",
+  "username": "test",
   "firstName": "Test",
   "lastName": "User",
-  "email": "test@example.com",
+  "email": "testt@example.com",
   "password": "Test1234"
 }
 
@@ -55,7 +59,93 @@ Authorization: {{simpleToken}}
 DELETE {{baseUrl}}/users/6a44411785f1ce126978ee53
 Authorization: {{simpleToken}}
 
-### 
-# @name logout
-get {{baseUrl}}/auth/logout
+####### Category #######
+
+###
+# @name listCategory
+GET {{baseUrl}}/categories
+Content-Type: application/json
 Authorization: {{simpleToken}}
+
+###
+# @name createCategory
+POST {{baseUrl}}/categories
+Content-Type: application/json
+Authorization: {{simpleToken}}
+
+{
+  "name": "Security"
+}
+
+###
+# @name readCategory
+GET {{baseUrl}}/categories/6a44dc14ea0e99bf08a18ba7
+Authorization: {{simpleToken}}
+
+###
+# @name updateCategory
+put {{baseUrl}}/categories/6a44dc14ea0e99bf08a18ba7
+Content-Type: application/json
+Authorization: {{simpleToken}}
+
+{
+    "name" : "World"
+}
+
+###
+# @name deleteCategory
+DELETE {{baseUrl}}/categories/6a44dc14ea0e99bf08a18ba7
+Authorization: {{simpleToken}}
+
+####### Blog #######
+
+###
+# @name listBlog
+GET {{baseUrl}}/blogs
+Content-Type: application/json
+Authorization: {{simpleToken}}
+
+###
+# @name createBlog
+POST {{baseUrl}}/blogs
+Content-Type: application/json
+Authorization: {{simpleToken}}
+
+{
+  "categoryId": "6a44de6130ca4093a3fc3bac",
+  "title": "Blog Title 2",
+  "content": "Blog Content 2",
+  "image": "http://imageURL",
+  "isPublish": true
+}
+
+###
+# @name listBlog
+GET {{baseUrl}}/blogs
+Content-Type: application/json
+Authorization: {{simpleToken}}
+
+###
+# @name readBlog
+GET {{baseUrl}}/blogs/6a462077680ebfea9d65755f
+Authorization: {{simpleToken}}
+
+###
+# @name updateBlog
+put {{baseUrl}}/blogs/6a4616cc4501b1eb455dfe89
+Content-Type: application/json
+Authorization: {{simpleToken}}
+
+{
+  "categoryId": "6a44de6130ca4093a3fc3bac",
+  "title": "Blog Title 1 updated",
+  "content": "Blog Content 1",
+  "image": "http://imageURL",
+  "isPublish": true
+}
+
+###
+# @name toggleLikeBlog
+POST {{baseUrl}}/blogs/6a462077680ebfea9d65755f/postlike
+Authorization: {{simpleToken}}
+

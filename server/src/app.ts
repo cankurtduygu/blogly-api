@@ -3,6 +3,8 @@
 import express from "express";
 import authRoutes from "./routes/auth.routes.js";
 import userRoutes from "./routes/user.routes.js";
+import blogRoutes from "./routes/blog.routes.js";
+import categoryRoutes from "./routes/category.routes.js";
 import { errorHandler } from "./middlewares/errorHandler.js";
 import { authentication } from "./middlewares/authentication.js";
 import { queryHandler } from "./middlewares/queryHandler.js";
@@ -27,6 +29,8 @@ app.use(authentication)
 
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
+app.use("/categories", categoryRoutes);
+app.use("/blogs", blogRoutes);
 
 
 // Error handler
