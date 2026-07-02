@@ -149,3 +149,42 @@ Authorization: {{simpleToken}}
 POST {{baseUrl}}/blogs/6a462077680ebfea9d65755f/postlike
 Authorization: {{simpleToken}}
 
+
+
+####### Comment #######
+###
+# @name listComments
+GET {{baseUrl}}/comments
+Authorization: {{simpleToken}}
+
+###
+# @name createComment
+POST {{baseUrl}}/comments
+Content-Type: application/json
+Authorization: {{simpleToken}}
+
+{
+  "blogId": "6a4616cc4501b1eb455dfe89",
+  "comment": "Bu benim yorumum."
+}
+
+###
+# @name readComment
+GET {{baseUrl}}/comments/6a465ca4410956609ad7b72a
+Authorization: {{simpleToken}}
+
+###
+# @name updateComment
+PUT {{baseUrl}}/comments/6a465ca4410956609ad7b72a
+Content-Type: application/json
+Authorization: {{simpleToken}}
+
+{
+  "comment": "Güncellenmiş yorum."
+}
+
+###
+# @name deleteComment
+DELETE {{baseUrl}}/comments/6a465ca4410956609ad7b72a
+Authorization: {{simpleToken}}
+
